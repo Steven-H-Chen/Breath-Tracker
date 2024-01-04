@@ -1,4 +1,3 @@
-#from typing import Self
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
@@ -7,8 +6,7 @@ from kivy.uix.slider import Slider
 from kivy.clock import Clock
 from kivy.uix.widget import Widget
 from kivy.animation import Animation
-from kivy.graphics import Ellipse, Color
-import time
+from kivy.graphics import Ellipse
 
 class BreathTrackerApp(App):
 
@@ -23,9 +21,7 @@ class BreathTrackerApp(App):
 
         container = Widget()#calling in a container widget
         with container.canvas:
-            #self.circle_color = Color(1, 0, 0, 1)  # Initial color (red)
             self.circle = Ellipse(pos=(473, 320), size=(100, 100))
-        #container.bind(on_touch_down=self.animate_circle)
         layout.add_widget(container)
 
         start_button = Button(text='Start Breathing', background_color=(0, 1, 0, 1))
@@ -38,19 +34,10 @@ class BreathTrackerApp(App):
     def animate_circle(self, instance ):#touch
         # Animate the circle's position, size, and color
         
-        
         if self.slider.value >0:
             bduration = int (self.slider.value*2.45)
-            animate = Animation(size=(-100, -100),duration=bduration) #+ Animation(background_color=(0, 1, 0, 1))
+            animate = Animation(size=(-100, -100),duration=bduration) 
             animate.start(self.circle)
-            
-        #else:
-            #animate = Animation(size=(-100,-100), duration=bduration)
-            #animate.start(self.circle)
-            
-
-
-        #pos=(touch.x - 25, touch.y - 25),
 
     def start_breathing(self, instance): # instance in this situation is reference to the trigger method basically referencing on press from the button 
         breath_duration = int(self.slider.value)
@@ -79,7 +66,6 @@ class BreathTrackerApp(App):
         if self.slider.value < self.countdown_out :
             self.breath_label.text = f'Breathe out: Hold for {self.slider.value} seconds...'
             self.slider.value +=1
-            #self.countdown_out -= 1
             
         else:
             self.breath_label.text = 'Done...'
