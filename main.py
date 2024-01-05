@@ -21,7 +21,7 @@ class BreathTrackerApp(App):
 
         container = Widget()#calling in a container widget
         with container.canvas:
-            self.circle = Ellipse(pos=(473, 320), size=(100, 100))
+            self.circle = Ellipse(pos=(750, 450), size=(100, 100))
         layout.add_widget(container)
 
         start_button = Button(text='Start Breathing', background_color=(0, 1, 0, 1))
